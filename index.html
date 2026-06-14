@@ -1912,15 +1912,40 @@ function initReveal() {
     width: '100%',
     height: '100%',
     margin: 0,
-    disableLayout: false,
+    disableLayout: true,
     embedded: false
   });
+
+  // Manual layout: position each section absolutely
+  function manualLayout() {
+    const reveal = document.querySelector('.reveal');
+    const slidesContainer = document.querySelector('.slides');
+    if (!reveal || !slidesContainer) return;
+    const w = reveal.clientWidth;
+    const h = reveal.clientHeight;
+    slidesContainer.style.width = w + 'px';
+    slidesContainer.style.height = h + 'px';
+    slidesContainer.style.position = 'absolute';
+    slidesContainer.style.top = '0';
+    slidesContainer.style.left = '0';
+    document.querySelectorAll('.slides > section').forEach(sec => {
+      sec.style.position = 'absolute';
+      sec.style.width = w + 'px';
+      sec.style.height = h + 'px';
+      sec.style.top = '0';
+      sec.style.left = '0';
+    });
+    if (RevealApi && typeof RevealApi.layout === 'function') {
+      RevealApi.layout();
+    }
+  }
 
   // Force reveal to recalc layout on window resize / load
   function reflow() {
     if (RevealApi && typeof RevealApi.layout === 'function') {
       RevealApi.layout();
     }
+    manualLayout();
   }
   window.addEventListener('resize', reflow);
   window.addEventListener('load', reflow);

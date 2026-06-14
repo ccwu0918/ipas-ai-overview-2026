@@ -1222,14 +1222,18 @@ html,body{height:100%;overflow:hidden;background:var(--dark-bg);font-family:'Not
 </section>
 
 
-<!-- Reveal.js -->
-<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js"></script>
+<!-- Reveal.js (load explicitly into global via UMD bundle) -->
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@4.6.1/dist/reveal.js" defer></script>
 <script>
-let Reveal;
-
 function initReveal() {
-  Reveal = document.querySelector('.reveal').Reveal;
-  Reveal.initialize({
+  // Reveal.js 4.6 exports the API as a global named 'Reveal'
+  const RevealApi = (typeof Reveal !== 'undefined') ? Reveal : window.Reveal;
+  if (!RevealApi || typeof RevealApi.initialize !== 'function') {
+    console.warn('Reveal.js not loaded yet, retrying...');
+    return setTimeout(initReveal, 80);
+  }
+
+  RevealApi.initialize({
     hash: true,
     slideNumber: false,
     controls: true,
@@ -1237,12 +1241,13 @@ function initReveal() {
     center: false,
     transition: 'slide',
     width: window.innerWidth,
-    height: window.innerHeight
+    height: window.innerHeight,
+    disableLayout: false
   });
 
-  Reveal.on('slidechanged', e => {
-    const idx = e.indexh + 1;
-    const total = Reveal.getTotalSlides();
+  RevealApi.on('slidechanged', e => {
+    const idx = (e.indexh || 0) + 1;
+    const total = RevealApi.getTotalSlides();
     const pct = (idx / total) * 100;
     document.getElementById('progress-bar').style.width = pct + '%';
     document.getElementById('slide-counter').textContent = idx + ' / ' + total;

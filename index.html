@@ -1869,17 +1869,17 @@ html,body{height:100%;width:100%;overflow:hidden;background:var(--dark-bg);font-
   </div>
   <div style="margin-top:20px;">
     <div id="poll-container">
-      <div class="poll-option" onclick="selectPoll('l21')">
+      <div class="poll-option" data-opt="l21" onclick="selectPoll('l21', this)">
         <div class="poll-bar-bg"><div class="poll-bar-fill" id="poll-bar-l21" style="background:rgba(0,245,255,0.4);"></div></div>
         <div class="poll-label accent-cyan">L21</div>
         <div class="poll-pct" id="poll-pct-l21">0%</div>
       </div>
-      <div class="poll-option" onclick="selectPoll('l22')">
+      <div class="poll-option" data-opt="l22" onclick="selectPoll('l22', this)">
         <div class="poll-bar-bg"><div class="poll-bar-fill" id="poll-bar-l22" style="background:rgba(255,107,53,0.4);"></div></div>
         <div class="poll-label accent-orange">L22</div>
         <div class="poll-pct" id="poll-pct-l22">0%</div>
       </div>
-      <div class="poll-option" onclick="selectPoll('l23')">
+      <div class="poll-option" data-opt="l23" onclick="selectPoll('l23', this)">
         <div class="poll-bar-bg"><div class="poll-bar-fill" id="poll-bar-l23" style="background:rgba(57,255,20,0.4);"></div></div>
         <div class="poll-label accent-green">L23</div>
         <div class="poll-pct" id="poll-pct-l23">0%</div>
@@ -2050,12 +2050,14 @@ function submitWordCloud() {
 // ─── Firebase Poll ───
 let selectedPoll = null;
 
-function selectPoll(opt) {
+function selectPoll(opt, el) {
   selectedPoll = opt;
-  document.querySelectorAll('.poll-option').forEach(el => {
-    el.style.background = 'rgba(255,255,255,0.03)';
+  document.querySelectorAll('.poll-option').forEach(node => {
+    node.style.background = 'rgba(255,255,255,0.03)';
   });
-  event.currentTarget.style.background = 'rgba(255,255,255,0.08)';
+  // Use passed element or fall back to finding it
+  const target = el || document.querySelector('.poll-option[data-opt="' + opt + '"]');
+  if (target) target.style.background = 'rgba(255,255,255,0.08)';
 }
 
 function submitPoll() {

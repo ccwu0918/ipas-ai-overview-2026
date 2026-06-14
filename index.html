@@ -105,6 +105,672 @@ html,body{height:100%;overflow:hidden;background:var(--dark-bg);font-family:'Not
 <div id="slide-counter">1 / ?</div>
 <div class="reveal">
 <div class="slides">
+<!-- S01: COVER -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a 40%,#1a0a2e);">
+  <img src="images/cover.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.22;" alt="">
+  <div style="position:absolute;inset:0;background:radial-gradient(ellipse at 25% 55%,rgba(0,245,255,0.09) 0%,transparent 55%),radial-gradient(ellipse at 75% 25%,rgba(191,95,255,0.09) 0%,transparent 55%);"></div>
+  <div style="position:relative;z-index:1;display:flex;flex-direction:column;justify-content:center;align-items:center;height:100%;text-align:center;">
+    <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;">
+      <span class="tag tag-cyan">iPAS 認證</span>
+      <span class="tag tag-purple">AI 應用規劃師</span>
+      <span class="tag tag-orange">中級</span>
+    </div>
+    <h1 style="font-size:2.9em;background:linear-gradient(135deg,#00f5ff,#bf5fff,#ff6b35);-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.15;margin-bottom:14px;">備考攻略<br>完整攻略</h1>
+    <p style="font-size:1em;color:rgba(255,255,255,0.55);margin-bottom:6px;">L21 核心 AI 技術 × L22 大數據分析 × L23 機器學習</p>
+    <p style="font-size:0.85em;color:rgba(255,255,255,0.38);margin-bottom:28px;">3 科全攻略 · 48 頁精華 · 460 題題庫</p>
+    <div style="display:flex;gap:14px;margin-bottom:28px;flex-wrap:wrap;justify-content:center;">
+      <div style="text-align:center;background:rgba(0,245,255,0.07);border:1px solid rgba(0,245,255,0.2);border-radius:10px;padding:12px 22px;">
+        <div class="big-num accent-cyan">460</div><div style="font-size:0.72em;color:rgba(255,255,255,0.48);margin-top:3px;">題庫總題數</div>
+      </div>
+      <div style="text-align:center;background:rgba(255,107,53,0.07);border:1px solid rgba(255,107,53,0.2);border-radius:10px;padding:12px 22px;">
+        <div class="big-num accent-orange">90</div><div style="font-size:0.72em;color:rgba(255,255,255,0.48);margin-top:3px;">分鐘作答</div>
+      </div>
+      <div style="text-align:center;background:rgba(57,255,20,0.07);border:1px solid rgba(57,255,20,0.2);border-radius:10px;padding:12px 22px;">
+        <div class="big-num accent-green">60</div><div style="font-size:0.72em;color:rgba(255,255,255,0.48);margin-top:3px;">分及格</div>
+      </div>
+    </div>
+    <p style="font-size:0.75em;color:rgba(255,255,255,0.28);">← → 鍵或空白鍵切換　　ESC 總覽</p>
+  </div>
+</section>
+
+<!-- S02: WORDCLOUD -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 02</span><span class="tag tag-cyan">互動</span>
+    <h2 style="margin:0;font-size:1.45em;">🙋 你最擔心哪個科目？</h2>
+  </div>
+  <p style="margin-bottom:10px;font-size:0.88em;color:rgba(255,255,255,0.48);">點擊直接投票，或輸入你担心的關鍵字加到雲端 →</p>
+  <div id="wordcloud-container"></div>
+  <div id="wc-input-row">
+    <input id="wc-input" placeholder="輸入關鍵字（如 NLP、CNN...）">
+    <button id="wc-submit" onclick="submitWordCloud()">加入雲端</button>
+  </div>
+  <div class="divider"></div>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.28);">
+      <div style="font-size:0.72em;color:var(--neon-cyan);font-weight:700;margin-bottom:3px;">L21 核心 AI 技術</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.6);">NLP / CV / GenAI / 多模態 / Transformer</div>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.28);">
+      <div style="font-size:0.72em;color:var(--neon-orange);font-weight:700;margin-bottom:3px;">L22 大數據分析</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.6);">統計檢定 / 數據工程 / 隱私保護</div>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.28);">
+      <div style="font-size:0.72em;color:var(--neon-green);font-weight:700;margin-bottom:3px;">L23 機器學習</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.6);">監督/非監督/強化 / 深度學習 / 公平性</div>
+    </div>
+  </div>
+</section>
+
+<!-- S03: EXAM OVERVIEW -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 03</span><span class="tag tag-cyan">考試全貌</span>
+  </div>
+  <h2>📋 考試制度一次搞懂</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:14px 0;">
+    <div class="card" style="border-color:rgba(0,245,255,0.28);text-align:center;">
+      <div class="big-num accent-cyan">3</div><div style="font-size:0.78em;color:rgba(255,255,255,0.58);margin-top:6px;">考試科目</div>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.28);text-align:center;">
+      <div class="big-num accent-orange">460</div><div style="font-size:0.78em;color:rgba(255,255,255,0.58);margin-top:6px;">題庫總題數</div>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.28);text-align:center;">
+      <div class="big-num accent-green">90</div><div style="font-size:0.78em;color:rgba(255,255,255,0.58);margin-top:6px;">分鐘作答</div>
+    </div>
+    <div class="card" style="border-color:rgba(191,95,255,0.28);text-align:center;">
+      <div class="big-num accent-purple">60</div><div style="font-size:0.78em;color:rgba(255,255,255,0.58);margin-top:6px;">分及格門檻</div>
+    </div>
+  </div>
+  <table class="neon-table">
+    <thead>
+      <tr style="background:rgba(0,245,255,0.05);">
+        <th style="color:var(--neon-cyan);">科目</th><th style="color:var(--neon-cyan);">命題範圍</th><th style="color:var(--neon-cyan);">佔比</th><th style="color:var(--neon-cyan);">題型</th><th style="color:var(--neon-cyan);">必/選</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="highlight-row">
+        <td><span class="accent-cyan" style="font-weight:700;">L21</span></td><td>核心 AI 技術與應用</td><td><span class="accent-orange" style="font-weight:700;">60%</span></td><td>單選 74 / 複選 40</td><td><span class="tag tag-cyan" style="font-size:0.68em;">必考</span></td>
+      </tr>
+      <tr>
+        <td><span class="accent-orange" style="font-weight:700;">L22</span></td><td>大數據分析與應用</td><td style="color:rgba(255,255,255,0.48);">20%</td><td>單選 34 / 複選 18</td><td><span class="tag tag-orange" style="font-size:0.68em;">選考</span></td>
+      </tr>
+      <tr>
+        <td><span class="accent-green" style="font-weight:700;">L23</span></td><td>機器學習與模型治理</td><td style="color:rgba(255,255,255,0.48);">20%</td><td>單選 34 / 複選 18</td><td><span class="tag tag-green" style="font-size:0.68em;">選考</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px;padding:10px 14px;background:rgba(255,215,0,0.07);border:1px solid rgba(255,215,0,0.28);border-radius:7px;font-size:0.8em;color:var(--neon-gold);">
+    ⚠️ 策略重點：L21 必須全力衝刺！L22/L23 依強項選一科加強即可通過
+  </div>
+</section>
+
+<!-- S04: THREE SUBJECTS -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#1a0a2e);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 04</span><span class="tag tag-cyan">三大科目</span>
+  </div>
+  <h2>🎯 三大科目比重與核心能力</h2>
+  <div class="three-col" style="margin-top:14px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.38);">
+      <div style="text-align:center;margin-bottom:10px;"><div class="big-num accent-cyan">60<span style="font-size:0.38em;">%</span></div></div>
+      <div class="card-title" style="text-align:center;color:var(--neon-cyan);font-size:1em;margin-bottom:7px;">L21 核心 AI 技術</div>
+      <ul style="font-size:0.78em;">
+        <li>NLP 自然語言處理</li><li>電腦視覺 CV</li><li>生成式 AI / Diffusion</li>
+        <li>多模態學習</li><li>Transformer 架構</li><li>模型部署與監控</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.38);">
+      <div style="text-align:center;margin-bottom:10px;"><div class="big-num accent-orange">20<span style="font-size:0.38em;">%</span></div></div>
+      <div class="card-title" style="text-align:center;color:var(--neon-orange);font-size:1em;margin-bottom:7px;">L22 大數據分析</div>
+      <ul style="font-size:0.78em;">
+        <li>描述/診斷/預測/處方分析</li><li>假設檢定與統計推論</li><li>大數據 5V 特性</li>
+        <li>Spark / Hadoop 生態</li><li>GenAI 評估指標</li><li>隱私保護與 PETs</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.38);">
+      <div style="text-align:center;margin-bottom:10px;"><div class="big-num accent-green">20<span style="font-size:0.38em;">%</span></div></div>
+      <div class="card-title" style="text-align:center;color:var(--neon-green);font-size:1em;margin-bottom:7px;">L23 機器學習</div>
+      <ul style="font-size:0.78em;">
+        <li>監督/非監督/強化學習</li><li>深度學習架構</li><li>偏差-變異數權衡</li>
+        <li>正則化與過擬合</li><li>模型評估指標</li><li>RAI 公平性與問責</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:12px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap;">
+    <span class="badge cyan">📌 必考科目</span>
+    <span class="badge orange">📌 選考科目（依強項選一科加強）</span>
+  </div>
+</section>
+
+<!-- S05: L211 FOUR TECHNOLOGIES -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <img src="images/bg_ai.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.12;" alt="">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 05</span><span class="tag tag-cyan">L21</span><span class="tag tag-purple">核心技術</span>
+  </div>
+  <h2>L211 四大 AI 核心技術</h2>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:14px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.38);text-align:center;">
+      <div style="font-size:1.9em;margin-bottom:7px;">🗣️</div>
+      <div class="card-title" style="color:var(--neon-cyan);">NLP</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.55);margin-bottom:7px;">自然語言處理</div>
+      <ul style="font-size:0.75em;text-align:left;">
+        <li>Word2Vec / BERT / GPT</li><li>文字嵌入與 Transformer</li><li>情感分析、NER、翻譯</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.38);text-align:center;">
+      <div style="font-size:1.9em;margin-bottom:7px;">👁️</div>
+      <div class="card-title" style="color:var(--neon-orange);">CV</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.55);margin-bottom:7px;">電腦視覺</div>
+      <ul style="font-size:0.75em;text-align:left;">
+        <li>分類/偵測/分割</li><li>CNN / YOLO / Faster R-CNN</li><li>VGG / ResNet / EfficientNet</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(191,95,255,0.38);text-align:center;">
+      <div style="font-size:1.9em;margin-bottom:7px;">🎨</div>
+      <div class="card-title" style="color:var(--neon-purple);">GenAI</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.55);margin-bottom:7px;">生成式 AI</div>
+      <ul style="font-size:0.75em;text-align:left;">
+        <li>VAE / GAN / Diffusion</li><li>文字生成 / 圖像生成</li><li>Stable Diffusion</li>
+      </ul>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.38);text-align:center;">
+      <div style="font-size:1.9em;margin-bottom:7px;">🔗</div>
+      <div class="card-title" style="color:var(--neon-green);">多模態</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.55);margin-bottom:7px;">Multimodal</div>
+      <ul style="font-size:0.75em;text-align:left;">
+        <li>CLIP 跨模態對比學習</li><li>圖文生成 / VQA</li><li>大型多模態模型 LMM</li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-top:10px;font-size:0.78em;color:rgba(255,255,255,0.42);text-align:center;">
+    💡 跨章節：Transformer 同時出現在 L21101 NLP、L21103 GenAI、L21104 多模態、L21302 部署
+  </div>
+</section>
+
+<!-- S06: NLP EVOLUTION -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 06</span><span class="tag tag-cyan">L21101</span><span class="tag tag-purple">NLP 演進</span>
+  </div>
+  <h2>NLP 核心演進：Word2Vec → BERT → GPT</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px;">
+    <div class="compare-item" style="border-color:rgba(255,107,53,0.28);">
+      <div class="ci-title" style="color:var(--neon-orange);">Word2Vec（2013）</div>
+      <ul class="li-orange" style="font-size:0.78em;">
+        <li>淺層雙層神經網路，CBOW / Skip-gram</li>
+        <li>靜態詞向量：每個詞固定一個向量</li>
+        <li>缺點：無法處理一詞多義</li>
+        <li>代表作：Mikolov et al., 2013</li>
+      </ul>
+    </div>
+    <div class="compare-item" style="border-color:rgba(0,245,255,0.28);">
+      <div class="ci-title" style="color:var(--neon-cyan);">BERT（2018）</div>
+      <ul class="li-orange" style="font-size:0.78em;">
+        <li>Transformer Encoder 雙向架構</li>
+        <li>MLM（遮罩語言模型）預訓練</li>
+        <li>動態上下文感知向量</li>
+        <li>適合：分類、問答、NER</li>
+      </ul>
+    </div>
+  </div>
+  <div class="compare-item" style="border-color:rgba(191,95,255,0.28);margin-top:12px;">
+    <div class="ci-title" style="color:var(--neon-purple);">GPT 系列（2018–現在）</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:8px;">
+      <div>
+        <div style="font-size:0.75em;color:var(--neon-purple);font-weight:700;">GPT-1/2/3（解碼器-only）</div>
+        <ul style="font-size:0.75em;color:rgba(255,255,255,0.68);"><li>單向自迴歸生成</li><li>Next Token Prediction</li><li>few-shot / zero-shot 能力</li></ul>
+      </div>
+      <div>
+        <div style="font-size:0.75em;color:var(--neon-purple);font-weight:700;">RLHF + InstructGPT</div>
+        <ul style="font-size:0.75em;color:rgba(255,255,255,0.68);"><li>人類回饋強化學習</li><li>對齊人類意圖</li><li>GPT-3.5 / GPT-4 基礎</li></ul>
+      </div>
+      <div>
+        <div style="font-size:0.75em;color:var(--neon-purple);font-weight:700;">GPT-4o / o1 / o3</div>
+        <ul style="font-size:0.75em;color:rgba(255,255,255,0.68);"><li>多模態原生整合</li><li>CoT / 推理能力</li><li>Tool use / Agent</li></ul>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:8px;display:flex;gap:7px;flex-wrap:wrap;">
+    <span class="badge orange">必考：BERT 雙向 / GPT 單向的差異</span>
+    <span class="badge cyan">必考：MLM vs Next Token Prediction</span>
+    <span class="badge purple">必考：Transformer Encoder vs Decoder</span>
+  </div>
+</section>
+
+<!-- S07: CV FOUR TASKS -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <img src="images/bg_cnn.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.11;" alt="">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 07</span><span class="tag tag-cyan">L21102</span><span class="tag tag-orange">CV 四大任務</span>
+  </div>
+  <h2>電腦視覺四大核心任務</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;gap:12px;margin-top:12px;height:calc(100vh - 210px);">
+    <div class="card" style="border-color:rgba(0,245,255,0.38);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
+        <span style="font-size:1.7em;">🏷️</span><div><div class="card-title accent-cyan">影像分類</div><div style="font-size:0.72em;color:rgba(255,255,255,0.4);">Image Classification</div></div>
+      </div>
+      <ul style="font-size:0.78em;"><li>AlexNet → VGG → ResNet → EfficientNet</li><li>Top-1 / Top-5 準確率</li><li>遷移學習（預訓練 + Fine-tune）</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.38);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
+        <span style="font-size:1.7em;">📦</span><div><div class="card-title accent-orange">物件偵測</div><div style="font-size:0.72em;color:rgba(255,255,255,0.4);">Object Detection</div></div>
+      </div>
+      <ul style="font-size:0.78em;"><li>Two-stage：Faster R-CNN / RCNN 系列</li><li>One-stage：YOLO / SSD</li><li>IoU / mAP 評估</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(191,95,255,0.38);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
+        <span style="font-size:1.7em;">🟩</span><div><div class="card-title accent-purple">語意分割</div><div style="font-size:0.72em;color:rgba(255,255,255,0.4);">Semantic Segmentation</div></div>
+      </div>
+      <ul style="font-size:0.78em;"><li>FCN → U-Net → DeepLab</li><li>Pixel-level 逐像素分類</li><li>IoU / Dice Coefficient</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.38);">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:9px;">
+        <span style="font-size:1.7em;">🌄</span><div><div class="card-title accent-green">全景分割</div><div style="font-size:0.72em;color:rgba(255,255,255,0.4);">Panoptic Segmentation</div></div>
+      </div>
+      <ul style="font-size:0.78em;"><li>結合語意分割 + 實例分割</li><li>Thing（可數物體）vs Stuff（背景）</li><li>全景 Quality（PQ）指標</li></ul>
+    </div>
+  </div>
+</section>
+
+<!-- S08: GENERATIVE MODELS -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#1a0a2e);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 08</span><span class="tag tag-cyan">L21103</span><span class="tag tag-purple">生成模型對比</span>
+  </div>
+  <h2>三大生成模型：VAE vs GAN vs Diffusion</h2>
+  <table class="neon-table" style="font-size:0.75em;margin-top:12px;">
+    <thead>
+      <tr style="background:rgba(0,245,255,0.05);">
+        <th style="color:var(--neon-cyan);">維度</th><th style="color:var(--neon-orange);">VAE</th><th style="color:var(--neon-cyan);">GAN</th><th style="color:var(--neon-purple);">Diffusion</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td style="font-weight:600;">核心原理</td><td>學習隱變量分佈，重構損失</td><td>生成器 vs 判別器對抗訓練</td><td>逐步加噪 + 逐步去噪</td></tr>
+      <tr class="highlight-row"><td style="font-weight:600;">訓練穩定性</td><td style="color:var(--neon-green);">✅ 穩定（重建目標）</td><td style="color:var(--neon-orange);">⚠️ 不穩定（模式崩潰）</td><td style="color:var(--neon-green);">✅ 穩定（逐步訓練）</td></tr>
+      <tr><td style="font-weight:600;">生成品質</td><td style="color:rgba(255,255,255,0.58);">模糊</td><td style="color:var(--neon-cyan);">✅ 高品質</td><td style="color:var(--neon-purple);">✅ 最高品質 SOTA</td></tr>
+      <tr><td style="font-weight:600;">計算成本</td><td style="color:var(--neon-green);">⬇️ 低</td><td style="color:var(--neon-orange);">⬆️ 高</td><td style="color:var(--neon-orange);">⬆️⬆️ 高</td></tr>
+      <tr class="highlight-row"><td style="font-weight:600;">代表作</td><td>VAE, VQ-VAE</td><td>DCGAN, StyleGAN, BigGAN</td><td>DDPM, Stable Diffusion, DALL-E 3</td></tr>
+      <tr><td style="font-weight:600;">必考重點</td><td>隱變量 + 變分推斷</td><td>minimax 目標 + 模式崩潰</td><td>Forward/Reverse process</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:9px;display:flex;gap:7px;flex-wrap:wrap;">
+    <span class="badge cyan">必考：GAN 模式崩潰（mode collapse）</span>
+    <span class="badge purple">必考：Diffusion = 逐步加噪→逐步去噪</span>
+    <span class="badge orange">必考：VAE 使用變分推斷（variational inference）</span>
+  </div>
+</section>
+
+<!-- S09: CLIP -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <img src="images/bg_data.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.1;" alt="">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 09</span><span class="tag tag-cyan">L21104</span><span class="tag tag-green">多模態核心</span>
+  </div>
+  <h2>CLIP：多模態跨世代學習的基石</h2>
+  <div class="two-col" style="margin-top:14px;">
+    <div>
+      <div class="card" style="border-color:rgba(0,245,255,0.28);margin-bottom:10px;">
+        <div class="card-title accent-cyan" style="font-size:0.95em;">🔑 CLIP 三大核心能力</div>
+        <ul style="font-size:0.78em;margin-top:7px;"><li><strong>零樣本分類</strong>：无需训练即可识别新类别</li><li><strong>跨模態對比學習</strong>：圖像-文字配對對比 loss</li><li><strong>文生圖核心</strong>：Stable Diffusion 的 CLIP Text Encoder</li></ul>
+      </div>
+      <div class="card" style="border-color:rgba(57,255,20,0.28);">
+        <div class="card-title accent-green" style="font-size:0.95em;">🧠 架構原理</div>
+        <ul style="font-size:0.78em;margin-top:7px;"><li>雙塔架構：Vision Encoder + Text Encoder</li><li>對比學習：最大化匹配配對 cosine similarity</li><li>4億圖文對預訓練（WebImageText）</li><li>訓練目標：對稱交叉熵 loss</li></ul>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="border-color:rgba(191,95,255,0.28);margin-bottom:10px;">
+        <div class="card-title accent-purple" style="font-size:0.95em;">📌 為何 CLIP 是多模態關鍵？</div>
+        <ul style="font-size:0.78em;margin-top:7px;"><li>打破「每種任務需專門數據」的限制</li><li>文本作為橋梁：任意視覺概念可被文本描述</li><li>支撐：BLIP, LLaVA, GPT-4V 等多模態模型</li><li>Prompt Engineering 在視覺領域的延伸</li></ul>
+      </div>
+      <div class="card" style="border-color:rgba(255,107,53,0.28);">
+        <div class="card-title accent-orange" style="font-size:0.95em;">🎨 Stable Diffusion 離不開 CLIP</div>
+        <ul style="font-size:0.78em;margin-top:7px;"><li>CLIP Text Encoder：將文字 prompt 轉為 embedding</li><li>U-Net：在潛空間預測噪聲殘差</li><li>VAE 解碼器：潛空間 → 像素空間</li><li>CFG（Classifier-Free Guidance）提升質量</li></ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- S10: TRANSFORMER CROSS-TOPIC -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#1a0a2e);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 10</span><span class="tag tag-gold">⚡ 跨章節</span><span class="tag tag-purple">Transformer</span>
+  </div>
+  <h2>Transformer 橫跨四大章節：L21/L213 的核心脈絡</h2>
+  <div class="card-grid cols-2" style="margin-top:14px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.28);">
+      <div class="card-title accent-cyan" style="font-size:0.95em;">📌 考試定位</div>
+      <div style="font-size:0.78em;color:rgba(255,255,255,0.68);margin-top:7px;line-height:1.65;">
+        Transformer 是 iPAS 命題最高頻的跨章節概念！<br>
+        出現在：<span class="accent-cyan">L21101 NLP</span>、<span class="accent-purple">L21103 GenAI</span>、<span class="accent-green">L21104 多模態</span>、<span class="accent-orange">L21302 部署</span>
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.28);">
+      <div class="card-title accent-orange" style="font-size:0.95em;">🧠 Self-Attention 核心公式</div>
+      <div class="code-block" style="margin-top:7px;font-size:0.75em;">
+        Attention(Q,K,V) = softmax(QKᵀ/√d)·V<br>
+        Multi-Head = Concat(head₁,...,headₕ)·Wᴼ
+      </div>
+    </div>
+  </div>
+  <table class="neon-table" style="font-size:0.74em;margin-top:12px;">
+    <thead>
+      <tr style="background:rgba(0,245,255,0.05);">
+        <th style="color:var(--neon-cyan);">章節</th><th style="color:var(--neon-cyan);">Transformer 應用</th><th style="color:var(--neon-cyan);">關鍵模型</th><th style="color:var(--neon-cyan);">必考點</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="accent-cyan">L21101 NLP</span></td><td>Encoder → BERT / Decoder → GPT</td><td>BERT, GPT, T5, LLaMA</td><td>雙向 attention vs 單向</td></tr>
+      <tr><td><span class="accent-purple">L21103 GenAI</span></td><td>Decoder-only 生成文本/代碼</td><td>GPT-3/4, LLaMA, ChatGPT</td><td>RLHF, Instruction tuning</td></tr>
+      <tr><td><span class="accent-green">L21104 多模態</span></td><td>Vision Transformer（ViT）</td><td>ViT, CLIP, DINOv2, BLIP</td><td>Patch + Position Embedding</td></tr>
+      <tr><td><span class="accent-orange">L21302 部署</span></td><td>模型壓縮、量化、加速推理</td><td>INT8 量化、FlashAttention</td><td>KV Cache / Prefill-Decode</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- S11: DATA DRIFT -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 11</span><span class="tag tag-gold">⚡ 跨章節</span><span class="tag tag-pink">資料漂移</span>
+  </div>
+  <h2>資料漂移三大類：跨章節串連 L212 / L213</h2>
+  <div class="three-col" style="margin-top:14px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.38);text-align:center;">
+      <div style="font-size:1.4em;margin-bottom:7px;">📊</div>
+      <div class="card-title accent-cyan" style="font-size:0.95em;">Covariate Drift</div>
+      <div style="font-size:0.72em;color:rgba(255,255,255,0.4);margin-bottom:7px;">L21301 / L21203</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.68);line-height:1.55;">
+        <strong>輸入資料分布改變</strong><br>
+        X分佈 P(X) 變了<br>
+        但 P(Y|X) 不變<br><br>
+        例：相機光線變化
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.38);text-align:center;">
+      <div style="font-size:1.4em;margin-bottom:7px;">🔄</div>
+      <div class="card-title accent-orange" style="font-size:0.95em;">Prior Drift</div>
+      <div style="font-size:0.72em;color:rgba(255,255,255,0.4);margin-bottom:7px;">L21301</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.68);line-height:1.55;">
+        <strong>標籤先驗分布改變</strong><br>
+        P(Y) 分佈改變<br><br>
+        例：類別不平衡比例在時間上新類別增加
+      </div>
+    </div>
+    <div class="card" style="border-color:rgba(255,45,149,0.38);text-align:center;">
+      <div style="font-size:1.4em;margin-bottom:7px;">⚠️</div>
+      <div class="card-title accent-pink" style="font-size:0.95em;">Concept Drift</div>
+      <div style="font-size:0.72em;color:rgba(255,255,255,0.4);margin-bottom:7px;">L21203 / L21302</div>
+      <div style="font-size:0.75em;color:rgba(255,255,255,0.68);line-height:1.55;">
+        <strong>輸入-標籤關係改變</strong><br>
+        P(Y|X) 條件分布改變<br>
+        <span class="accent-pink">最嚴重，需重新訓練</span><br><br>
+        例：信用卡欺詐模式改變
+      </div>
+    </div>
+  </div>
+  <div class="compare-row" style="margin-top:12px;">
+    <div class="compare-item" style="border-color:rgba(191,95,255,0.28);">
+      <div class="ci-title" style="color:var(--neon-purple);">📐 PSI（Population Stability Index）</div>
+      <div style="font-size:0.78em;color:rgba(255,255,255,0.68);margin-top:5px;">
+        <div class="code-block" style="font-size:0.75em;">PSI = Σ (A_i − E_i) × ln(A_i/E_i)</div>
+        <div style="margin-top:5px;">PSI &lt; 0.1：無顯著漂移　PSI 0.1~0.2：輕微漂移　PSI &gt; 0.2：<span class="accent-pink">嚴重，需重訓</span></div>
+      </div>
+    </div>
+    <div class="compare-item" style="border-color:rgba(57,255,20,0.28);">
+      <div class="ci-title" style="color:var(--neon-green);">🛡️ 應對策略（L21302）</div>
+      <ul class="li-green" style="font-size:0.78em;margin-top:5px;">
+        <li>線上學習（Online Learning）增量更新</li><li>定期重新訓練（Retraining）</li>
+        <li>漂移檢測 + 自動觸發重訓練管線</li><li>Shadow Mode：新模型並行驗證</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- S12: L212 AI IMPORT PROCESS -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <img src="images/bg_workspace.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.11;" alt="">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 12</span><span class="tag tag-orange">L212</span><span class="tag tag-purple">AI 導入流程</span>
+  </div>
+  <h2>L212 AI 導入流程：痛點 → 價值 → 落地</h2>
+  <div style="display:flex;gap:0;margin-top:14px;align-items:stretch;">
+    <div style="flex:1;padding:12px;background:rgba(0,245,255,0.06);border:1px solid rgba(0,245,255,0.2);border-radius:9px;text-align:center;margin-right:5px;">
+      <div style="font-size:1.5em;margin-bottom:5px;">🔍</div><div style="font-size:0.75em;font-weight:700;color:var(--neon-cyan);margin-bottom:3px;">痛點識別</div><div style="font-size:0.7em;color:rgba(255,255,255,0.52);">業務瓶頸分析</div>
+    </div>
+    <div style="font-size:1.1em;color:rgba(255,255,255,0.28);align-self:center;">→</div>
+    <div style="flex:1;padding:12px;background:rgba(255,107,53,0.06);border:1px solid rgba(255,107,53,0.2);border-radius:9px;text-align:center;margin-right:5px;">
+      <div style="font-size:1.5em;margin-bottom:5px;">🎯</div><div style="font-size:0.75em;font-weight:700;color:var(--neon-orange);margin-bottom:3px;">目標設定</div><div style="font-size:0.7em;color:rgba(255,255,255,0.52);">SMART 原則</div>
+    </div>
+    <div style="font-size:1.1em;color:rgba(255,255,255,0.28);align-self:center;">→</div>
+    <div style="flex:1;padding:12px;background:rgba(191,95,255,0.06);border:1px solid rgba(191,95,255,0.2);border-radius:9px;text-align:center;margin-right:5px;">
+      <div style="font-size:1.5em;margin-bottom:5px;">📋</div><div style="font-size:0.75em;font-weight:700;color:var(--neon-purple);margin-bottom:3px;">可行性評估</div><div style="font-size:0.7em;color:rgba(255,255,255,0.52);">技術/數據/法規/RAI</div>
+    </div>
+    <div style="font-size:1.1em;color:rgba(255,255,255,0.28);align-self:center;">→</div>
+    <div style="flex:1;padding:12px;background:rgba(57,255,20,0.06);border:1px solid rgba(57,255,20,0.2);border-radius:9px;text-align:center;margin-right:5px;">
+      <div style="font-size:1.5em;margin-bottom:5px;">💰</div><div style="font-size:0.75em;font-weight:700;color:var(--neon-green);margin-bottom:3px;">CBA 成本效益</div><div style="font-size:0.7em;color:rgba(255,255,255,0.52);">TCO / ROI</div>
+    </div>
+    <div style="font-size:1.1em;color:rgba(255,255,255,0.28);align-self:center;">→</div>
+    <div style="flex:1;padding:12px;background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);border-radius:9px;text-align:center;">
+      <div style="font-size:1.5em;margin-bottom:5px;">⚠️</div><div style="font-size:0.75em;font-weight:700;color:var(--neon-gold);margin-bottom:3px;">風險管理</div><div style="font-size:0.7em;color:rgba(255,255,255,0.52);">RAI 六原則</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div style="font-size:0.82em;color:rgba(255,255,255,0.68);">
+    <strong class="accent-cyan">SMART 原則：</strong>
+    <span class="badge cyan" style="font-size:0.72em;">S</span>pecific 具體
+    <span class="badge orange" style="font-size:0.72em;">M</span>easureable 可衡量
+    <span class="badge green" style="font-size:0.72em;">A</span>chievable 可達成
+    <span class="badge purple" style="font-size:0.72em;">R</span>elevant 相關
+    <span class="badge gold" style="font-size:0.72em;">T</span>ime-bound 有時限
+  </div>
+</section>
+
+<!-- S13: FEASIBILITY + RAI -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#1a0a2e);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 13</span><span class="tag tag-orange">L21201</span><span class="tag tag-cyan">可行性 + RAI</span>
+  </div>
+  <h2>五大可行性評估 × RAI 六原則</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:12px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.28);">
+      <div class="card-title accent-cyan" style="font-size:0.85em;">🔧 技術可行性</div>
+      <ul style="font-size:0.75em;"><li>現有技術能否實現？</li><li>模型成熟度 / 準確率要求</li><li>算力基礎設施是否足夠</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.28);">
+      <div class="card-title accent-orange" style="font-size:0.85em;">📊 數據可行性</div>
+      <ul style="font-size:0.75em;"><li>數據量是否足夠訓練模型？</li><li>數據品質與標註品質</li><li>數據隱私法規遵循</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(191,95,255,0.28);">
+      <div class="card-title accent-purple" style="font-size:0.85em;">⚖️ 法規可行性</div>
+      <ul style="font-size:0.75em;"><li>個資法 / GDPR 遵循</li><li>產業監管要求</li><li>公平性與非歧視規範</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.28);">
+      <div class="card-title accent-green" style="font-size:0.85em;">🏢 組織可行性</div>
+      <ul style="font-size:0.75em;"><li>高層支持與文化接受度</li><li>跨部門協作機制</li><li>員工培訓與轉型計畫</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(255,215,0,0.28);">
+      <div class="card-title accent-gold" style="font-size:0.85em;">💵 財務可行性</div>
+      <ul style="font-size:0.75em;"><li>TCO（總擁有成本）估算</li><li>ROI / 投資回收期</li><li>Opportunity Cost</li></ul>
+    </div>
+    <div class="card" style="border-color:rgba(255,45,149,0.28);">
+      <div class="card-title accent-pink" style="font-size:0.85em;">🛡️ RAI 六原則</div>
+      <ul style="font-size:0.75em;">
+        <li><strong>公平性</strong>：減少偏見與歧視</li><li><strong>可靠性</strong>：輸出穩定安全</li><li><strong>隱私</strong>：資料保護機制</li>
+        <li><strong>包容性</strong>：多元利害關係人</li><li><strong>透明性</strong>：可解釋性與可追溯</li><li><strong>問責</strong>：責任歸屬機制</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- S14: DEPLOYMENT ARCHITECTURE -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <img src="images/bg_cloud.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.11;" alt="">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 14</span><span class="tag tag-cyan">L21302</span><span class="tag tag-orange">部署架構</span>
+  </div>
+  <h2>模型部署架構：Docker → Kubernetes → MLOps</h2>
+  <div class="three-col" style="margin-top:14px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.32);text-align:center;">
+      <div style="font-size:1.7em;margin-bottom:8px;">📦</div>
+      <div class="card-title accent-cyan" style="text-align:center;">Docker 容器化</div>
+      <ul style="font-size:0.75em;text-align:left;"><li>隔離環境：環境一致性</li><li>輕量：比 VM 啟動更快</li><li>Dockerfile 定義依賴</li><li>缺點：單機管理</li></ul>
+      <div style="margin-top:8px;font-size:0.7em;color:var(--neon-cyan);">時機：單一服務 / 小規模</div>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.32);text-align:center;">
+      <div style="font-size:1.7em;margin-bottom:8px;">☸️</div>
+      <div class="card-title accent-orange" style="text-align:center;">Kubernetes (K8s)</div>
+      <ul style="font-size:0.75em;text-align:left;"><li>容器編排：自動擴展/修復</li><li>HPA 自動擴展</li><li>滾動更新 / 回滾</li><li>負載均衡 / Ingress</li></ul>
+      <div style="margin-top:8px;font-size:0.7em;color:var(--neon-orange);">時機：中大型 / 微服務</div>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.32);text-align:center;">
+      <div style="font-size:1.7em;margin-bottom:8px;">⚙️</div>
+      <div class="card-title accent-green" style="text-align:center;">MLOps 全生命週期</div>
+      <ul style="font-size:0.75em;text-align:left;"><li>CI/CD for ML：持續訓練+部署</li><li>Model Registry 版本管理</li><li>Feature Store 特徵工程共享</li><li>Experiment Tracking</li></ul>
+      <div style="margin-top:8px;font-size:0.7em;color:var(--neon-green);">時機：企業級規模化</div>
+    </div>
+  </div>
+  <div class="divider"></div>
+  <div class="code-block" style="font-size:0.75em;">
+    ML Lifecycle：Data → Feature Eng. → Train → Evaluate → Register → Deploy → Monitor → (Data Drift) → Retrain
+  </div>
+</section>
+
+<!-- S15: DEPLOYMENT STRATEGIES -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#1a0a2e);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 15</span><span class="tag tag-cyan">L21302</span><span class="tag tag-purple">部署策略</span>
+  </div>
+  <h2>四大部署策略對比：風險從高到低</h2>
+  <table class="neon-table" style="font-size:0.75em;margin-top:12px;">
+    <thead>
+      <tr style="background:rgba(255,107,53,0.07);">
+        <th style="color:var(--neon-orange);">策略</th><th style="color:var(--neon-orange);">做法</th><th style="color:var(--neon-orange);">風險</th><th style="color:var(--neon-orange);">回滾速度</th><th style="color:var(--neon-orange);">適用場景</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td><span class="accent-green" style="font-weight:700;">🟢 影子模式</span></td><td>新舊模型同時運行，不影響用戶</td><td><span style="color:var(--neon-green);">⬇️ 極低</span></td><td>即時</td><td>新模型驗證、AB 測試前安全測試</td></tr>
+      <tr class="highlight-row"><td><span class="accent-cyan" style="font-weight:700;">🔵 灰度發布</span></td><td>先開放給小部分用戶，逐步擴大</td><td><span style="color:var(--neon-cyan);">⬇️ 低</span></td><td>快速</td><td>功能驗證、用戶回饋收集</td></tr>
+      <tr><td><span class="accent-purple" style="font-weight:700;">🟣 A/B 測試</span></td><td>隨機分流：N% 舊模型，(100-N)% 新模型</td><td><span style="color:var(--neon-orange);">⬆️ 中</span></td><td>中等</td><td>效果對比、KPI 量化驗證</td></tr>
+      <tr class="highlight-row"><td><span class="accent-gold" style="font-weight:700;">🟡 金絲雀部署</span></td><td>先上線 5% 流量，逐步替換至 100%</td><td><span style="color:var(--neon-orange);">⬆️ 中低</span></td><td>快速</td><td>生產環境逐步驗證</td></tr>
+      <tr><td><span class="accent-pink" style="font-weight:700;">🔴 藍綠部署</span></td><td>兩套完整環境，一鍵切換流量</td><td><span style="color:var(--neon-green);">⬇️ 低</span></td><td>即時</td><td>零停機需求、快速回滾</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- S16: L21 COMPARISON TOP 15 -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 16</span><span class="tag tag-gold">🔥 必考</span><span class="tag tag-cyan">對比題 TOP 15</span>
+  </div>
+  <h2>L21 必考對比題：15 組核心比較</h2>
+  <div class="slide-scroll" style="margin-top:10px;">
+    <table class="neon-table" style="font-size:0.72em;">
+      <thead>
+        <tr style="background:rgba(0,245,255,0.05);">
+          <th style="color:var(--neon-cyan);">#</th><th style="color:var(--neon-cyan);">比較維度</th><th style="color:var(--neon-cyan);">選項 A</th><th style="color:var(--neon-cyan);">選項 B</th><th style="color:var(--neon-cyan);">必考結論</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>詞向量</td><td>Word2Vec（靜態）</td><td>BERT（動態上下文）</td><td>Word2Vec 無法處理一詞多義，BERT 動態感知上下文</td></tr>
+        <tr class="highlight-row"><td>2</td><td>Transformer</td><td>Encoder（Bert）</td><td>Decoder（GPT）</td><td>Encoder 雙向適合理解，Decoder 單向適合生成</td></tr>
+        <tr><td>3</td><td>注意力</td><td>Self-Attention</td><td>Cross-Attention</td><td>Self 用於內部表示，Cross 用於跨模態對齊</td></tr>
+        <tr class="highlight-row"><td>4</td><td>影像分類</td><td>VGG（深但效率低）</td><td>ResNet（殘差連接）</td><td>ResNet 解決深層網路梯度消失問題</td></tr>
+        <tr><td>5</td><td>物件偵測</td><td>YOLO（One-stage 快）</td><td>Faster R-CNN（Two-stage 準）</td><td>即時需求選 YOLO，精確需求選 R-CNN</td></tr>
+        <tr class="highlight-row"><td>6</td><td>生成模型</td><td>GAN（對抗訓練）</td><td>Diffusion（逐步去噪）</td><td>Diffusion 更穩定品質更高，GAN 訓練不穩定</td></tr>
+        <tr><td>7</td><td>影像分割</td><td>語意分割</td><td>全景分割</td><td>語意只分類像素，全景額外區分實例</td></tr>
+        <tr class="highlight-row"><td>8</td><td>多模態</td><td>Early Fusion</td><td>Late Fusion</td><td>Early 共享表示學習好，Late 獨立處理再融合</td></tr>
+        <tr><td>9</td><td>部署架構</td><td>Docker（單機）</td><td>Kubernetes（叢集）</td><td>Docker 簡單隔離，K8s 自動化編排</td></tr>
+        <tr class="highlight-row"><td>10</td><td>部署策略</td><td>藍綠部署</td><td>金絲雀部署</td><td>藍綠即時切換，金絲雀漸進流量切換</td></tr>
+        <tr><td>11</td><td>Transformer</td><td>Positional Encoding</td><td>RoPE / ALiBi</td><td>RoPE/ALiBi 旋轉位置編碼，無需額外參數</td></tr>
+        <tr class="highlight-row"><td>12</td><td>NLP 任務</td><td>Fine-tuning</td><td>Prompt Engineering</td><td>Fine-tune 調整模型參數，Prompt 不改參數</td></tr>
+        <tr><td>13</td><td>CLIP</td><td>對比學習</td><td>重建學習</td><td>CLIP 用對比 loss 最大化匹配配對相似度</td></tr>
+        <tr class="highlight-row"><td>14</td><td>資料漂移</td><td>Covariate Drift</td><td>Concept Drift</td><td>Covariate 只改輸入分布，Concept 更嚴重（關係改變）</td></tr>
+        <tr><td>15</td><td>AI 倫理</td><td>Explainability</td><td>Interpretability</td><td>Explainability事後解釋，Interpretability模型內在可理解</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- S17: METRICS SELECTION -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#1a0a2e);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 17</span><span class="tag tag-gold">🔥 必考</span><span class="tag tag-green">指標選擇速查</span>
+  </div>
+  <h2>任務 → 正確指標速查表（涵蓋 L21 + L23）</h2>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px;">
+    <div class="card" style="border-color:rgba(0,245,255,0.28);">
+      <div class="card-title accent-cyan">📊 分類任務</div>
+      <table class="neon-table" style="font-size:0.72em;"><tbody>
+        <tr><td style="font-weight:600;">不平衡數據</td><td><span class="badge cyan">F1 / Precision / Recall</span></td></tr>
+        <tr><td style="font-weight:600;">多類別均等</td><td><span class="badge green">Accuracy</span></td></tr>
+        <tr><td style="font-weight:600;">排名/檢索</td><td><span class="badge purple">AUC-ROC</span></td></tr>
+        <tr><td style="font-weight:600;">癌症檢測</td><td><span class="badge orange">Recall（漏檢代價高）</span></td></tr>
+        <tr><td style="font-weight:600;">垃圾郵件</td><td><span class="badge pink">Precision（誤殺代價高）</span></td></tr>
+        <tr><td style="font-weight:600;">目標偵測</td><td><span class="badge gold">mAP（IoU threshold）</span></td></tr>
+      </tbody></table>
+    </div>
+    <div class="card" style="border-color:rgba(255,107,53,0.28);">
+      <div class="card-title accent-orange">📈 回歸任務</div>
+      <table class="neon-table" style="font-size:0.72em;"><tbody>
+        <tr><td style="font-weight:600;">一般回歸</td><td><span class="badge orange">MSE / RMSE</span></td></tr>
+        <tr><td style="font-weight:600;">異常值敏感</td><td><span class="badge cyan">MAE / Huber Loss</span></td></tr>
+        <tr><td style="font-weight:600;">解釋性</td><td><span class="badge green">R²（決定係數）</span></td></tr>
+        <tr><td style="font-weight:600;">相對誤差</td><td><span class="badge purple">MAPE</span></td></tr>
+        <tr><td style="font-weight:600;">對數尺度</td><td><span class="badge gold">RMSLE</span></td></tr>
+      </tbody></table>
+    </div>
+    <div class="card" style="border-color:rgba(57,255,20,0.28);">
+      <div class="card-title accent-green">🎨 生成模型</div>
+      <table class="neon-table" style="font-size:0.72em;"><tbody>
+        <tr><td style="font-weight:600;">文字生成</td><td><span class="badge green">BLEU / ROUGE</span></td></tr>
+        <tr><td style="font-weight:600;">圖像生成</td><td><span class="badge cyan">FID / IS / CLIP Score</span></td></tr>
+        <tr><td style="font-weight:600;">語音合成</td><td><span class="badge orange">MOS 分數</span></td></tr>
+        <tr><td style="font-weight:600;">語言模型</td><td><span class="badge purple">Perplexity</span></td></tr>
+      </tbody></table>
+    </div>
+    <div class="card" style="border-color:rgba(191,95,255,0.28);">
+      <div class="card-title accent-purple">🔍 聚類任務</div>
+      <table class="neon-table" style="font-size:0.72em;"><tbody>
+        <tr><td style="font-weight:600;">輪廓係數</td><td><span class="badge purple">Silhouette Score</span></td></tr>
+        <tr><td style="font-weight:600;">DB Index</td><td><span class="badge cyan">越小越好</span></td></tr>
+        <tr><td style="font-weight:600;">Adjusted Rand</td><td><span class="badge green">ARI（外部標籤）</span></td></tr>
+        <tr><td style="font-weight:600;">NMI</td><td><span class="badge orange">正規化互資訊</span></td></tr>
+      </tbody></table>
+    </div>
+  </div>
+</section>
+
+<!-- S18: L21 SCENARIO SELECTION -->
+<section style="background:linear-gradient(135deg,#0a0a1a,#0d1b2a);">
+  <div class="slide-header">
+    <span class="slide-num">SLIDE 18</span><span class="tag tag-gold">🔥 必考</span><span class="tag tag-purple">場景選型 TOP 10</span>
+  </div>
+  <h2>L21 必考場景選型：10 大情境 → 最佳解</h2>
+  <div class="slide-scroll" style="margin-top:10px;">
+    <table class="neon-table" style="font-size:0.72em;">
+      <thead>
+        <tr style="background:rgba(0,245,255,0.05);">
+          <th style="color:var(--neon-cyan);">#</th><th style="color:var(--neon-cyan);">場景描述</th><th style="color:var(--neon-cyan);">最佳技術選擇</th><th style="color:var(--neon-cyan);">關鍵理由</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>大量發票文字識別</td><td><span class="badge cyan">OCR + CNN</span></td><td>文件圖像 → 結構化文字，CNN 特徵提取</td></tr>
+        <tr class="highlight-row"><td>2</td><td>自動駕駛即時障礙物偵測</td><td><span class="badge orange">YOLO + LiDAR</span></td><td>即時性要求高，One-stage 滿足 FPS</td></tr>
+        <tr><td>3</td><td>客服對話自動回覆</td><td><span class="badge purple">GPT-4 / LLM + RAG</span></td><td>生成自然語言 + 知識庫檢索增強</td></tr>
+        <tr class="highlight-row"><td>4</td><td>醫療影像腫瘤分割</td><td><span class="badge cyan">U-Net + DeepLab</span></td><td>Pixel-level 精確分割，醫療標準</td></tr>
+        <tr><td>5</td><td>用戶評論情感分析</td><td><span class="badge green">BERT Fine-tuning</span></td><td>雙向上下文理解中文細微情感</td></tr>
+        <tr class="highlight-row"><td>6</td><td>產品推薦系統</td><td><span class="badge orange">CF + Deep Learning</span></td><td>矩陣分解 + 深度學習混合</td></tr>
+        <tr><td>7</td><td>AI 主播自動生成影片</td><td><span class="badge purple">數字人 + TTS + Diffusion</span></td><td>多模態：文本+語音+影像同步生成</td></tr>
+        <tr class="highlight-row"><td>8</td><td>工業瑕疵檢測</td><td><span class="badge cyan">ResNet + 遷移學習</span></td><td>樣本少 + 遷移學習補足</td></tr>
+        <tr><td>9</td><td>新聞摘要自動生成</td><td><span class="badge green">BART / T5（Seq2Seq）</span></td><td>Extractive + Abstractive 混合</td></tr>
+        <tr class="highlight-row"><td>10</td><td>模型上線後漂移監控</td><td><span class="badge gold">PSI + Concept Drift Detection</span></td><td>自動觸發重訓練，MLOps 監控管線</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
 <!-- S19: L22 OVERVIEW -->
 <section style="background:linear-gradient(135deg,#0a0a1a,#1a0a2e);">
   <img src="images/bg_l22_overview.png" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.14;" alt="">
@@ -1236,6 +1902,7 @@ function initReveal() {
   RevealApi.initialize({
     hash: false,
     slideNumber: false,
+    showSlideNumber: false,
     controls: true,
     progress: false,
     center: false,

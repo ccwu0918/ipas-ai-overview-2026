@@ -10,10 +10,10 @@
 <style>
 :root{--neon-cyan:#00f5ff;--neon-orange:#ff6b35;--neon-green:#39ff14;--neon-purple:#bf5fff;--neon-pink:#ff2d95;--neon-gold:#ffd700;--dark-bg:#0a0a1a;--dark-card:rgba(255,255,255,0.05);--dark-border:rgba(255,255,255,0.12);--glass-bg:rgba(10,10,30,0.75)}
 *{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;overflow:hidden;background:var(--dark-bg);font-family:'Noto Sans TC','Inter',sans-serif;color:#fff}
+html,body{height:100%;width:100%;overflow:hidden;background:var(--dark-bg);font-family:'Noto Sans TC','Inter',sans-serif;color:#fff;margin:0;padding:0}
 .reveal{background:var(--dark-bg)}
 .reveal .slides{text-align:left}
-.reveal .slides section{height:100vh;padding:36px 56px;position:relative;overflow:hidden}
+.reveal .slides section{height:100%;padding:36px 56px;position:relative;overflow:hidden}
 .reveal .slides section::before{content:'';position:absolute;inset:0;background-size:cover;background-position:center;opacity:0.15;z-index:0;pointer-events:none}
 .reveal .slides section>*{position:relative;z-index:1}
 .reveal h1{font-size:2.2em;font-weight:900;line-height:1.2}
@@ -1907,10 +1907,23 @@ function initReveal() {
     progress: false,
     center: false,
     transition: 'slide',
-    width: window.innerWidth,
-    height: window.innerHeight,
-    disableLayout: false
+    width: '100%',
+    height: '100%',
+    margin: 0,
+    disableLayout: false,
+    embedded: false
   });
+
+  // Force reveal to recalc layout on window resize / load
+  function reflow() {
+    if (RevealApi && typeof RevealApi.layout === 'function') {
+      RevealApi.layout();
+    }
+  }
+  window.addEventListener('resize', reflow);
+  window.addEventListener('load', reflow);
+  setTimeout(reflow, 100);
+  setTimeout(reflow, 500);
 
   RevealApi.on('slidechanged', e => {
     const idx = (e.indexh || 0) + 1;

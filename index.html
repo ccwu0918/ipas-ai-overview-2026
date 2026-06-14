@@ -1966,6 +1966,16 @@ function initReveal() {
     const pct = (idx / total) * 100;
     document.getElementById('progress-bar').style.width = pct + '%';
     document.getElementById('slide-counter').textContent = idx + ' / ' + total;
+    // Force all non-active slides off-screen (override reveal's transform stacking)
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.slides > section').forEach((sec, i) => {
+        if (i !== e.indexh) {
+          sec.style.transform = 'translate(-9999px, -9999px)';
+        } else {
+          sec.style.transform = 'translate(0, 0)';
+        }
+      });
+    });
   });
 
   // Initialize counter for first slide
@@ -1973,6 +1983,11 @@ function initReveal() {
     const total = RevealApi.getTotalSlides();
     document.getElementById('slide-counter').textContent = '1 / ' + total;
     document.getElementById('progress-bar').style.width = (1 / total * 100) + '%';
+    requestAnimationFrame(() => {
+      document.querySelectorAll('.slides > section').forEach((sec, i) => {
+        if (i !== 0) sec.style.transform = 'translate(-9999px, -9999px)';
+      });
+    });
   });
 }
 
